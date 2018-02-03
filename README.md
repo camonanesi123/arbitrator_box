@@ -1,5 +1,4 @@
-BTC Markets 中币套利机器人客户端
-=================
+BTC Markets =================
 
 A client implementation of [BTC Markets trading and account management API] (https://github.com/BTCMarkets/API) in python.
 
