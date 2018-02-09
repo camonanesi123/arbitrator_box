@@ -28,10 +28,12 @@ def request(action, key, signature, timestamp, path, data):
 
 
 def get_request(key, secret, path):
-     
+
+    print(int(time.time() * 1000))
     nowInMilisecond = str(int(time.time() * 1000))
-    stringToSign = path + "\n" + nowInMilisecond + "\n"  
-    #print(stringToSign)
+    stringToSign = path + "\n" + nowInMilisecond + "\n"
+    
+    print(stringToSign)
     #print('开始签名')
     #print(stringToSign.encode("utf8"))
     stringToSign = stringToSign.encode("utf8")
@@ -45,9 +47,9 @@ def post_request(key, secret, path, postData):
      
     nowInMilisecond = str(int(time.time() * 1000))
     stringToSign = path + "\n" + nowInMilisecond + "\n" + postData  
-
+    stringToSign = stringToSign.encode("utf8")
     signature = base64.b64encode(hmac.new(secret, stringToSign, digestmod=hashlib.sha512).digest())
-
+    postData = postData.encode('utf8')
     return request('post', key, signature, nowInMilisecond, path, postData) 
 
 
